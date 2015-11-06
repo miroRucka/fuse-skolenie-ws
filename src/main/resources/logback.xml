@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[ %-6p] [%d{dd.MM.yyyy HH:mm:ss}] --- %c: %m%n%xEx
+            </pattern>
+        </encoder>
+    </appender>
+    <logger name="org.apache.commons.digester">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="org.apache.commons.beanutils">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="org.springframework">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="org.springframework.aop.framework.Cglib2AopProxy">
+        <level value="ERROR"/>
+    </logger>
+
+    <logger name="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <level value="OFF"/>
+    </logger>
+
+    <logger name="com.mchange">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="org.hibernate.type" level="INFO" />
+    <logger name="org.hibernate" level="INFO" />
+
+    <logger name="org.exolab.castor">
+        <level value="ERROR"/>
+    </logger>
+
+    <logger name="org.castor">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="org.eclipse.jetty">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="com.mysema">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="net.sf hierarchy">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="org.apache.activemq">
+        <level value="WARN"/>
+    </logger>
+
+    <logger name="org.apache.cxf">
+        <level value="WARN"/>
+    </logger>
+
+    <logger name="net.sf.ehcache" level="INFO"/>
+
+    <root>
+        <appender-ref ref="console"/>
+    </root>
+</configuration>
