@@ -7,5 +7,16 @@ import javax.jws.WebService;
  */
 @WebService(name = "ServiceApi", targetNamespace = "http://posam.sk/skolenie/service-api")
 public interface IService {
-    String zlozityVypis();
+	String zlozityVypis();
+
+	String platba(String mena);
+
+	String euro();
+
+	String dolar();
+
+	String libra();
+
+	void chyba();
+
 }
