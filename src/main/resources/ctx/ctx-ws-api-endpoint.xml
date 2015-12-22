@@ -11,7 +11,29 @@
        http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
-    <jaxws:endpoint id="ServiceApi" implementor="sk.posam.skolenie.impl.ServiceImpl" address="/ws"/>
+    <bean id="logInBound" class="org.apache.cxf.interceptor.LoggingInInterceptor" />
+    <bean id="logOutBound" class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
+
+    <jaxws:endpoint id="ServiceApi" implementor="sk.posam.skolenie.impl.ServiceImpl" address="/ws">
+        <jaxws:features>
+            <bean class="org.apache.cxf.feature.LoggingFeature"/>
+        </jaxws:features>
+        <jaxws:inInterceptors>
+            <ref bean="logInBound" />
+            <ref bean="inbound-security" />
+        </jaxws:inInterceptors>
+    </jaxws:endpoint>
+
+    <bean id="inbound-security" class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+        <constructor-arg>
+            <map>
+                <entry key="action" value="Signature"/>
+                <entry key="signaturePropFile" value="server-crypto.properties"/>
+                <entry key="decryptionPropFile" value="server-crypto.properties"/>
+                <entry key="passwordCallbackClass" value="sk.posam.skolenie.impl.ServerPasswordCallback"/>
+            </map>
+        </constructor-arg>
+    </bean>
 
     <jaxrs:server id="customerService" address="/rs">
         <jaxrs:serviceBeans>

@@ -33,6 +33,7 @@
     <logger name="org.hibernate.type" level="INFO" />
     <logger name="org.hibernate" level="INFO" />
 
+
     <logger name="org.exolab.castor">
         <level value="ERROR"/>
     </logger>
@@ -61,6 +62,9 @@
     </logger>
 
     <logger name="net.sf.ehcache" level="INFO"/>
+
+    <logger name="org.apache.cxf" level="INFO"/>
+    <logger name="org.springframework" level="INFO"/>
 
     <root>
         <appender-ref ref="console"/>
