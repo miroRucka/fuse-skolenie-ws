@@ -1,7 +1,3 @@
-<!--beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:jaxws="http://cxf.apache.org/jaxws"
-       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd http://cxf.apache.org/jaxrs http://www.springframework.org/schema/beans"-->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:jaxws="http://cxf.apache.org/jaxws"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -12,11 +8,9 @@
        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <context:component-scan base-package="sk.posam.skolenie"/>
-
     <jaxws:client id="ws-client-test" serviceClass="sk.posam.skolenie.api.IService" address="http://localhost:8083/services/ws">
         <jaxws:outInterceptors>
             <ref bean="logInBound"/>
-            <ref bean="outbound-security" />
         </jaxws:outInterceptors>
         <jaxws:properties>
             <entry key="schema-validation-enabled" value="true" />
@@ -25,20 +19,5 @@
             <bean class="org.apache.cxf.feature.LoggingFeature"/>
         </jaxws:features>
     </jaxws:client>
-
     <bean class="org.apache.cxf.interceptor.LoggingInInterceptor" id="logInBound"/>
-
-    <bean class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor" id="outbound-security">
-        <constructor-arg>
-            <map>
-                <entry key="action" value="Signature"/>
-                <entry key="user" value="client"/>
-                <entry key="signaturePropFile" value="client-crypto.properties"/>
-                <entry key="encryptionPropFile" value="client-crypto.properties"/>
-                <entry key="signatureKeyIdentifier" value="DirectReference"/>
-                <entry key="encryptionUser" value="server"/>
-                <entry key="passwordCallbackClass" value="sk.posam.skolenie.test.ClientPasswordCallback"/>
-            </map>
-        </constructor-arg>
-    </bean>
 </beans>
